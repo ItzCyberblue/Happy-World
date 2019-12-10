@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 	
-	public static final int WIDTH = 640;
-	public static final int HEIGHT = 480;
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
 	public static final int SCALE = 1;
 	public static final String NAME = "Happy World";
 	
@@ -46,9 +46,31 @@ public class Game extends Canvas implements Runnable{
 	}
 
 	public void run() {
+		long lasTime = System.nanoTime();
+		double nsPerTick = 1000000000D/60D;
+		
+		int ticks = 0;
+		int frames = 0;
+		
+		long lasTimer = System.currentTimeMillis();
+		double delta = 0;
+		
 		while(running) {
-			System.out.println("Running...");
+			long now = System.nanoTime();
+			delta += (now - lasTime) / nsPerTick;
+			lasTime = now;
+			
+			tick();
+			render();
 		}
+	}
+	
+	public void tick() {
+		
+	}
+	
+	public void render() {
+		
 	}
 	
 	public static void main(String[] args) {
